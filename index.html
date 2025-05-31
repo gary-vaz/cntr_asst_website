@@ -13,6 +13,7 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
+        /* Keyframe animations for various entrance effects */
         .animate-fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
@@ -28,6 +29,12 @@
             opacity: 0;
             transform: translateX(20px);
         }
+        .animate-zoom-in {
+            animation: zoomIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -46,7 +53,14 @@
                 transform: translateX(0);
             }
         }
-        /* Custom scroll-reveal-like effect */
+        @keyframes zoomIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Custom scroll-reveal-like effect for elements entering viewport */
         .reveal-on-scroll {
             opacity: 0;
             transform: translateY(20px);
@@ -57,12 +71,12 @@
             transform: translateY(0);
         }
 
-        /* Hero image background with subtle animation */
+        /* Hero image background with subtle animation - 'Reefer Containers' text removed */
         .hero-background {
-            background-image: url('https://placehold.co/1920x1080/0A2D5C/FFFFFF?text=Reefer+Containers'); /* Placeholder image */
+            background-image: url('https://placehold.co/1920x1080/0A2D5C/FFFFFF'); /* Placeholder image, text removed */
             background-size: cover;
             background-position: center;
-            animation: panBackground 30s infinite alternate linear;
+            animation: panBackground 40s infinite alternate linear; /* Adjusted speed for smoother effect */
         }
 
         @keyframes panBackground {
@@ -70,14 +84,22 @@
             100% { background-position: 100% 100%; }
         }
 
-        /* Simple button hover effect */
+        /* Button hover effects for interactive feedback */
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+            background-color: #1a56db; /* Slightly darker blue */
         }
         .btn-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.1); /* Subtle white background on hover */
+        }
+
+        /* Navigation link hover effect */
+        .nav-link:hover {
+            color: #2563eb; /* Blue on hover */
+            transform: translateY(-1px); /* Slight lift */
         }
     </style>
 </head>
@@ -87,10 +109,10 @@
         <nav class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-blue-700">Container Assistant</a>
             <div class="hidden md:flex space-x-6">
-                <a href="#features" class="text-gray-600 hover:text-blue-700 transition duration-300">Features</a>
-                <a href="#benefits" class="text-gray-600 hover:text-blue-700 transition duration-300">Benefits</a>
-                <a href="#pricing" class="text-gray-600 hover:text-blue-700 transition duration-300">Pricing</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+                <a href="#features" class="nav-link text-gray-600 hover:text-blue-700 transition duration-300">Features</a>
+                <a href="#benefits" class="nav-link text-gray-600 hover:text-blue-700 transition duration-300">Benefits</a>
+                <a href="#pricing" class="nav-link text-gray-600 hover:text-blue-700 transition duration-300">Pricing</a>
+                <a href="#contact" class="nav-link text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
             </div>
             <button class="md:hidden text-gray-600 hover:text-blue-700 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -99,8 +121,7 @@
     </header>
 
     <section class="hero-background relative h-screen flex items-center justify-center text-white text-center px-4 pt-16">
-        <div class="absolute inset-0 bg-black opacity-60"></div>
-        <div class="relative z-10 max-w-4xl mx-auto">
+        <div class="absolute inset-0 bg-black opacity-60"></div> <div class="relative z-10 max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
                 Container Assistant for Mates: Optimize Reefer Management, Minimize Risks.
             </h1>
@@ -109,17 +130,17 @@
             </p>
             <div class="space-x-4 animate-fade-in-up" style="animation-delay: 0.4s;">
                 <a href="#features" class="btn-primary bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300">
-                    Learn More
+                    Discover Features
                 </a>
                 <a href="#contact" class="btn-secondary bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300">
-                    Get Started
+                    Request a Demo
                 </a>
             </div>
         </div>
     </section>
 
     <section id="challenge" class="py-16 bg-white px-4 md:px-12">
-        <div class="container mx-auto text-center reveal-on-scroll">
+        <div class="container mx-auto text-center reveal-on-scroll animate-zoom-in">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">The Challenge: Manual Monitoring, High Risks</h2>
             <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
                 Manual reefer monitoring is prone to errors, time-consuming, and exposes your valuable cargo to significant risks. Inaccurate temperature settings, missed alerts, and inadequate data lead to costly claims and operational inefficiencies that impact your bottom line.
@@ -147,11 +168,11 @@
 
     <section id="features" class="py-16 bg-blue-50 px-4 md:px-12">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-12 reveal-on-scroll">Our Solution: Intelligent & Efficient Management</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-12 reveal-on-scroll animate-zoom-in">Our Solution: Intelligent & Efficient Management</h2>
 
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="text-left reveal-on-scroll animate-slide-in-left">
-                    <div class="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full text-white mb-6 mx-auto md:mx-0">
+                    <div class="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full text-white mb-6 mx-auto md:mx-0 shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thermometer"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-blue-700 mb-4">Automated Reefer Container Management</h3>
@@ -164,7 +185,7 @@
                 </div>
 
                 <div class="text-left reveal-on-scroll animate-slide-in-right">
-                    <div class="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full text-white mb-6 mx-auto md:mx-0">
+                    <div class="flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full text-white mb-6 mx-auto md:mx-0 shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-blue-700 mb-4">Intelligent Onboard NFC Patrols</h3>
@@ -180,26 +201,26 @@
     </section>
 
     <section id="benefits" class="py-16 bg-white px-4 md:px-12">
-        <div class="container mx-auto text-center reveal-on-scroll">
+        <div class="container mx-auto text-center reveal-on-scroll animate-zoom-in">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Why Choose Container Assistant?</h2>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-8 bg-gray-50 rounded-lg shadow-md reveal-on-scroll" style="animation-delay: 0.1s;">
-                    <div class="flex items-center justify-center w-16 h-16 bg-purple-600 rounded-full text-white mb-6 mx-auto">
+                    <div class="flex items-center justify-center w-16 h-16 bg-purple-600 rounded-full text-white mb-6 mx-auto shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-off"><path d="M2.5 13.5a6 6 0 0 1 6-6H9"/><path d="M12 2a6 6 0 0 1 4 10.44"/><path d="M18 10a6 6 0 0 1 2 1.5"/><path d="M22 14a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4"/><path d="m2 2 20 20"/></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Offline Capability & Security</h3>
                     <p class="text-gray-600">Operate seamlessly without internet connectivity. All data is stored securely and privately on your device, ensuring cyber security and eliminating data costs.</p>
                 </div>
                 <div class="p-8 bg-gray-50 rounded-lg shadow-md reveal-on-scroll" style="animation-delay: 0.2s;">
-                    <div class="flex items-center justify-center w-16 h-16 bg-green-600 rounded-full text-white mb-6 mx-auto">
+                    <div class="flex items-center justify-center w-16 h-16 bg-green-600 rounded-full text-white mb-6 mx-auto shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Cost-Effective & Compatible</h3>
                     <p class="text-gray-600">Leverage your existing Android phones – no specialized hardware required. Our app is universally compatible across all vessel sizes and integrates effortlessly with PC desktops.</p>
                 </div>
                 <div class="p-8 bg-gray-50 rounded-lg shadow-md reveal-on-scroll" style="animation-delay: 0.3s;">
-                    <div class="flex items-center justify-center w-16 h-16 bg-orange-600 rounded-full text-white mb-6 mx-auto">
+                    <div class="flex items-center justify-center w-16 h-16 bg-orange-600 rounded-full text-white mb-6 mx-auto shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Risk Mitigation & Efficiency</h3>
@@ -210,7 +231,7 @@
     </section>
 
     <section id="pricing" class="py-16 bg-blue-50 px-4 md:px-12">
-        <div class="container mx-auto text-center reveal-on-scroll">
+        <div class="container mx-auto text-center reveal-on-scroll animate-zoom-in">
             <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-12">Flexible Pricing Plans</h2>
             <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-10">
                 Choose the plan that best fits your operational needs. Our transparent pricing ensures you get the most value for your investment.
@@ -254,7 +275,7 @@
     </section>
 
     <section id="contact" class="py-16 bg-white px-4 md:px-12">
-        <div class="container mx-auto text-center reveal-on-scroll">
+        <div class="container mx-auto text-center reveal-on-scroll animate-zoom-in">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Ready to Transform Your Operations?</h2>
             <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-10">
                 Contact us today to learn how Container Assistant for Mates can streamline your reefer container management and enhance vessel efficiency.
